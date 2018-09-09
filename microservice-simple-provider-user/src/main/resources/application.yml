@@ -1,0 +1,44 @@
+server:
+  port: 8000
+spring:
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:
+    platform: h2
+    schema: classpath:schema.sql
+    data: classpath:data.sql
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+management:
+#  security:
+#    enabled: false
+  # 暴露所有更多端点
+  # https :  //docs.spring.io/spring-boot/docs/current/reference/html/production-ready-endpoints.html
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  # 暴露/actuator/health详细信息
+  endpoint:
+    health:
+      show-details: always
+#endpoints:
+#  health:
+#    sensitive: false
+
+# 添加/actuator/info信息
+info:
+  app:
+    name: @project.artifactId@
+    encoding: @project.build.sourceEncoding@
+    java:
+      source: @java.version@
+      target: @java.version@
+

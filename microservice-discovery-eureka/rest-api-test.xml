@@ -1,0 +1,24 @@
+<instance>
+    <instanceId>itmuch:rest-api-test:9000</instanceId>
+    <hostName>itmuch</hostName>
+    <app>REST-API-TEST</app>
+    <ipAddr>127.0.0.1</ipAddr>
+    <secureVipAddress>rest-api-test</secureVipAddress>
+    <status>UP</status>
+    <port enabled="true">9000</port>
+    <securePort enabled="false">443</securePort>
+    <homePageUrl>http://127.0.0.1:9000</homePageUrl>
+    <statusPageUrl>http://127.0.0.1:9000/info</statusPageUrl>
+    <healthCheckUrl>http://127.0.0.1:9000/health</healthCheckUrl>
+    <dataCenterInfo class="com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo">
+        <name>MyOwn</name>
+    </dataCenterInfo>
+</instance>
+<!--
+1. 注册实例到Eureka
+cat ./rest-api-test.xml |curl -v -X POST -H "Content-type: application/xml" -d @- http://localhost:8761/eureka/apps/rest-api-test
+2. 查看实例详细信息
+http://localhost:8761/eureka/apps/rest-api-test
+3. 注销微服务实例
+curl -v -X DELETE http://localhost:8761/apps/rest-api-test/itmuch:rest-api-test:9000
+-->

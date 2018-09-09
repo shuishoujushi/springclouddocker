@@ -1,0 +1,17 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: microservice-consumer-movie
+user:
+  serviceUrl: http://127.0.0.1:8000/
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+# 自定义Ribbon配置，等同于创建RibbonConfiguration和TestRibbonConfiguration
+microservice-provider-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    # 客户端没有使用Eureka时，可以通过添加以下配置实现负载均衡
+    #listOfServers: localhost:8001,localhost:8002

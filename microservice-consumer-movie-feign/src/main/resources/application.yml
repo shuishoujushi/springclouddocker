@@ -1,0 +1,34 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: microservice-consumer-movie-feign
+user:
+  serviceUrl: http://127.0.0.1:8000/
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+# 自定义Ribbon配置，等同于创建RibbonConfiguration和TestRibbonConfiguration
+#microservice-provider-user:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+    # 客户端没有使用Eureka时，可以通过添加以下配置实现负载均衡
+    #listOfServers: localhost:8001,localhost:8002
+
+# Feign压缩配置，适用于SpringBoot1.x版本
+#feign:
+#  compression:
+#    request:
+#      enabled: true
+#      # 设置支持的媒体类型列表，默认为text/html,application/xml,application/json
+#      mime-types: text/html,application/xml,application/json
+#      # 设置请求的最小阈值，默认2048
+#      min-request: 2048
+#    response:
+#      enabled: true
+
+logging:
+  level:
+    # 将Feign接口的日志级别设置为DEBUG，因为Feign的Logger.Level只对DEBUG做出响应
+    com.charlie.cloud.feign.customizing.UserFeignClient: DEBUG
